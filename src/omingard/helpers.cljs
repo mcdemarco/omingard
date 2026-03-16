@@ -34,7 +34,7 @@
   "Takes a suit and returns its ASCII symbol, e.g. ♠ for :spades."
   (case suit
     :spades "♠"
-    :hearts "♥"
+    :hearts "♥\uFE0E"
     :diamonds "♦"
     :clubs "♣"
     nil))

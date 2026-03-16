@@ -122,7 +122,7 @@
               (dom/li nil
                 "Move cards:"(dom/br nil)
                 "Red goes below black (and vice versa). Descending values."(dom/br nil)
-                "A "(dom/span #js {:className "m-card_small red"} "♥Q")
+                "A "(dom/span #js {:className "m-card_small red"} "♥\uFE0EQ")
                 " can go below a " (dom/span #js {:className "m-card_small black"} "♠K")
                 " or " (dom/span #js {:className "m-card_small black"} "♣K")
                 "."(dom/br nil)

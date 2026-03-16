@@ -74,7 +74,7 @@
   {:name "symbol-for-suit"
    :expectations [
      ["spades"   (= "♠" (helpers/symbol-for-suit :spades))]
-     ["hearts"   (= "♥" (helpers/symbol-for-suit :hearts))]
+     ["hearts"   (= "♥\uFE0E" (helpers/symbol-for-suit :hearts))]
      ["diamonds" (= "♦" (helpers/symbol-for-suit :diamonds))]
      ["clubs"    (= "♣" (helpers/symbol-for-suit :clubs))]
      ["godzilla" (= nil (helpers/symbol-for-suit :godzilla))]]}
@@ -88,7 +88,7 @@
   {:name "label-for"
    :expectations [
      ["King of Hearts, deck A"
-      (= "♥ K" (helpers/label-for {:value 13 :suit :hearts :deck 1}))]]}
+      (= "♥\uFE0E K" (helpers/label-for {:value 13 :suit :hearts :deck 1}))]]}
 
   {:name "children-of"
    :expectations
