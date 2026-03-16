@@ -151,7 +151,7 @@
      :text-align "center"
      :line-height (rem 2)}]
 
-   [:.m-card
+  [:.m-card
      {:background "#ddd"
       :line-height (px 11)
       :font-size (rem 2.1)
@@ -161,7 +161,12 @@
       :border-radius (px 3)
       :height (px 25)
       :border "1px solid #bbb"
+      :white-space "nowrap"
+      :overflow "hidden"
      }
+    (at-media {:max-width (px 500)}
+      [:& {:font-size (rem 1.7)
+           :padding "6px 0"}])
     (at-media {:min-width (px 700)}
       [:& {:font-size (rem 2)}])
        [:&.as-open
