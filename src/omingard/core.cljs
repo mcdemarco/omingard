@@ -116,8 +116,7 @@
           (om/build columns-component (:columns appl) {:init-state {:channel channel}})
           (dom/div #js {:id "js-howto"
                         :className "l-howto is-visible"
-                        :onClick hide-howto-popup
-                        :onTouchStart hide-howto-popup}
+                        :onClick hide-howto-popup}
             (dom/h1 nil "How to play")
             (dom/ol nil
               (dom/li nil

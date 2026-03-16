@@ -111,6 +111,7 @@
     {:width "100%"
      :margin "0 auto"
      :padding 0
+     :touch-action "manipulation"
      :-webkit-touch-callout "none"
      :-webkit-user-select "none"
      :-khtml-user-select "none"
@@ -186,6 +187,7 @@
     {:margin-bottom padding
      :padding padding
      :background-color "#dbdbdb"
+     :touch-action "manipulation"
      :-webkit-touch-callout "none"
      :-webkit-user-select "none"
      :-khtml-user-select "none"

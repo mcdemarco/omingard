@@ -58,9 +58,6 @@
                        :onClick (fn [event]
                          (.preventDefault event)
                          (put! channel [handle-card-click @card]))
-                       :onTouchStart (fn [event]
-                         (.preventDefault event)
-                         (put! channel [handle-card-click @card]))
                        :onMouseOver (fn [event]
                          (if-not (helpers/is-touch-device?)
                            (put! channel [handle-card-hover @card (.-currentTarget event)])))
