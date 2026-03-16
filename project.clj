@@ -12,6 +12,8 @@
 
   :source-paths ["src"]
 
+  :jvm-opts ["--add-opens=java.base/jdk.internal.loader=ALL-UNNAMED"]
+
   :cljsbuild {
     :builds [
              {:id "omingard"
