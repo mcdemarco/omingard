@@ -52,7 +52,13 @@
 
   [:body {
     :font-family "'Droid Sans', sans-serif"
-    :font-size (rem 1.6)}]
+    :font-size (rem 1.6)
+    :-webkit-touch-callout "none"
+    :-webkit-user-select "none"
+    :-khtml-user-select "none"
+    :-moz-user-select "none"
+    :-ms-user-select "none"
+    :user-select "none"}]
 
   [:.omingard-wrapper {
     :outline "0"
