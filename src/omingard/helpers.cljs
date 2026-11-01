@@ -299,6 +299,7 @@
       appl))
 
 (defn undo [appl]
-  (when (> (count @app/app-history) 1)
-    (swap! app/app-history pop)
-    (reset! app/app-state (last @app/app-history))))
+  (if (> (count @app/app-history) 1)
+    (do (swap! app/app-history pop)
+        (reset! app/app-state (last @app/app-history)))
+    appl))

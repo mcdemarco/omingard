@@ -22,8 +22,11 @@
 (enable-console-print!)
 (js/React.initializeTouchEvents true)
 
-;; initialize app state
-(swap! app/app-state setup/serve-cards)
+(defn deal-new-game! []
+  (reset! app/app-state (setup/serve-cards (app/new-app-state)))
+  (reset! app/app-history [@app/app-state]))
+
+(deal-new-game!)
 
 (add-watch app/app-state :history
   (fn [_ _ _ n]
@@ -78,7 +81,7 @@
                         "↩ Undo"))
           (dom/li #js {:className "m-navigation--item as-right"}
             (dom/button #js {:className "m-navigation--new-game"
-                             :onClick (fn [_] (swap! app/app-state app/new-app-state) (swap! app/app-state setup/serve-cards))} "New Game"))
+                             :onClick (fn [_] (deal-new-game!))} "New Game"))
           (dom/li #js {:className "m-navigation--item as-right"}
             (dom/a #js {:href "https://github.com/paulwittmann/omingard" :target "_blank"} "Source Code")))))))
 
