@@ -27,7 +27,7 @@
 
 ;; localStorage can throw (e.g. storage disabled), and an old or corrupted
 ;; save must never stop the game from starting, so failures fall back to nil.
-(defn load-saved-game []
+(defn read-saved-game []
   (try
     (when-let [saved (.getItem js/localStorage storage-key)]
       (let [state (reader/read-string saved)]
@@ -37,8 +37,13 @@
                    (vector? (:columns state))
                    (= setup/columns# (count (:columns state)))
                    (every? (comp vector? :cards) (concat (:piles state) (:columns state))))
-          (helpers/unmark-all-cards state))))
+          state)))
     (catch :default _ nil)))
+
+(defn load-saved-game []
+  (some-> (read-saved-game) helpers/unmark-all-cards))
+
+(def ^:dynamic *from-other-tab* false)
 
 (defn save-game! [state]
   (try
@@ -50,7 +55,7 @@
   (reset! app/app-history [@app/app-state]))
 
 (add-watch app/app-state :save
-  (fn [_ _ _ n] (save-game! n)))
+  (fn [_ _ _ n] (when-not *from-other-tab* (save-game! n))))
 
 (def saved-game (load-saved-game))
 
@@ -63,6 +68,20 @@
   (fn [_ _ _ n]
     (when-not (= (last @app/app-history) n)
       (swap! app/app-history conj n))))
+
+;; Every open tab shares one save, so a tab left behind on an older position
+;; would overwrite newer progress the next time it was touched. Following
+;; other tabs' saves keeps them all on the latest game. Storage events can
+;; arrive after the save has moved on, so writing the followed game back
+;; would roll the other tab back.
+(.addEventListener js/window "storage"
+  (fn [event]
+    (when (= storage-key (.-key event))
+      (when-let [game (read-saved-game)]
+        (when-not (= game @app/app-state)
+          (binding [*from-other-tab* true]
+            (reset! app/app-state game))
+          (reset! app/app-history [game]))))))
 
 (defn column-placeholder-component [column-index owner]
   (reify
