@@ -30,6 +30,9 @@
                 :output-to "resources/public/omingard.js"
                 :output-dir "resources/public/out/"
                 :optimizations :advanced
+                ;; The shared keyword constants table goes stale on incremental
+                ;; builds and scrambles every keyword in the bundle.
+                :optimize-constants false
                 :pretty-print false
                 :preamble ["react/react.min.js"]
                 :externs  ["react/externs/react.js"]}}

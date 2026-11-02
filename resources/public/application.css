@@ -333,6 +333,12 @@ body {
   float: left;
 }
 
+.m-pile--cards {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .m-pile--placeholder {
   margin: 2px 0;
   height: 25px;

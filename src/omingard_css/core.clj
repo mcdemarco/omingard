@@ -260,6 +260,11 @@
     :margin-right "1%"
     :width "10%"}]
 
+  [:.m-pile--cards {
+    :list-style "none"
+    :margin 0
+    :padding 0}]
+
   [:.m-pile--placeholder
     {:background "#fafafa"
       :line-height (rem 1)

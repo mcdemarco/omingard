@@ -17,16 +17,47 @@
             [omingard.appstate :as app]
             [omingard.helpers :as helpers]
             [omingard.components.card :as card-components]
-            [omingard.components.pile :as pile-components]))
+            [omingard.components.pile :as pile-components]
+            [cljs.reader :as reader]))
 
 (enable-console-print!)
 (js/React.initializeTouchEvents true)
+
+(def storage-key "omingard-state")
+
+;; localStorage can throw (e.g. storage disabled), and an old or corrupted
+;; save must never stop the game from starting, so failures fall back to nil.
+(defn load-saved-game []
+  (try
+    (when-let [saved (.getItem js/localStorage storage-key)]
+      (let [state (reader/read-string saved)]
+        (when (and (map? state)
+                   (vector? (:stack state))
+                   (vector? (:piles state))
+                   (vector? (:columns state))
+                   (= setup/columns# (count (:columns state)))
+                   (every? (comp vector? :cards) (concat (:piles state) (:columns state))))
+          (helpers/unmark-all-cards state))))
+    (catch :default _ nil)))
+
+(defn save-game! [state]
+  (try
+    (.setItem js/localStorage storage-key (pr-str state))
+    (catch :default _ nil)))
 
 (defn deal-new-game! []
   (reset! app/app-state (setup/serve-cards (app/new-app-state)))
   (reset! app/app-history [@app/app-state]))
 
-(deal-new-game!)
+(add-watch app/app-state :save
+  (fn [_ _ _ n] (save-game! n)))
+
+(def saved-game (load-saved-game))
+
+(if saved-game
+  (do (reset! app/app-state saved-game)
+      (reset! app/app-history [saved-game]))
+  (deal-new-game!))
 
 (add-watch app/app-state :history
   (fn [_ _ _ n]
@@ -118,7 +149,7 @@
 
           (om/build columns-component (:columns appl) {:init-state {:channel channel}})
           (dom/div #js {:id "js-howto"
-                        :className "l-howto is-visible"
+                        :className (if saved-game "l-howto" "l-howto is-visible")
                         :onClick hide-howto-popup}
             (dom/h1 nil "How to play")
             (dom/ol nil

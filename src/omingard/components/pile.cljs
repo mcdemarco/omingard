@@ -13,7 +13,9 @@
       (dom/li #js {:className "m-pile"}
         (let [cards (:cards pile)]
           (if (seq cards)
-            (dom/div #js {:className "m-pile--cards"}
+            ;; Must be a <ul>: React builds the first render from an HTML string, and
+            ;; the parser closes .m-pile when it meets the card's <li> inside a <div>.
+            (dom/ul #js {:className "m-pile--cards"}
               (om/build card-components/item (last cards) {:init-state {:channel channel}}))
             ;; pile has no cards
             (let [suit (:suit pile)]

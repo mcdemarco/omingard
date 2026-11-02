@@ -17,5 +17,6 @@ goog.addDependency("../omingard/components/pile.js", ['omingard.components.pile'
 goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
 goog.addDependency("../clojure/set.js", ['clojure.set'], ['cljs.core']);
 goog.addDependency("../clojure/data.js", ['clojure.data'], ['cljs.core', 'clojure.set']);
-goog.addDependency("../omingard/core.js", ['omingard.core'], ['omingard.helpers', 'cljs.core', 'om.dom', 'cljs.core.async', 'omingard.appstate', 'omingard.components.pile', 'omingard.components.card', 'om.core', 'omingard.setup', 'clojure.string', 'clojure.data']);
+goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
+goog.addDependency("../omingard/core.js", ['omingard.core'], ['omingard.helpers', 'cljs.core', 'om.dom', 'cljs.core.async', 'omingard.appstate', 'omingard.components.pile', 'omingard.components.card', 'om.core', 'omingard.setup', 'clojure.string', 'clojure.data', 'cljs.reader']);
 goog.addDependency("../omingardtest/test.js", ['omingardtest.test'], ['omingard.helpers', 'cljs.core', 'omingard.appstate', 'omingard.components.card', 'omingard.core', 'omingard.setup', 'clojure.string']);
