@@ -91,7 +91,6 @@ body {
 }
 
 .l-navigation-container {
-  height: 4.5rem;
   padding: 0 1rem;
   background: black;
   width: 100%;
@@ -99,9 +98,14 @@ body {
 
 .m-navigation {
   margin: 0 auto;
+  height: 4.5rem;
+  display: flex;
   padding: 0;
+  flex-wrap: nowrap;
   list-style: none;
+  min-height: 44px;
   color: #eee;
+  align-items: stretch;
 }
 
 @media (min-width: 1000px) {
@@ -113,15 +117,17 @@ body {
 }
 
 .m-navigation--item {
-  width: 10rem;
-  line-height: 4.5rem;
-  margin-right: 1%;
-  float: left;
-  height: 4.5rem;
+  white-space: nowrap;
+  margin-left: 1rem;
+  flex: 0 0 auto;
+  align-items: center;
+  display: flex;
 }
 
-.m-navigation--item.as-right {
-  float: right;
+.m-navigation--item.as-title {
+  flex: 1 1 auto;
+  margin-left: 0;
+  overflow: hidden;
 }
 
 .m-navigation--item a {
@@ -134,18 +140,25 @@ body {
   font-size: 2rem;
 }
 
+.m-navigation--new-game, .m-navigation--undo {
+  cursor: pointer;
+  touch-action: manipulation;
+  white-space: nowrap;
+  padding: 0 1rem;
+  min-width: 10rem;
+  align-self: stretch;
+}
+
 .m-navigation--new-game {
-  height: 4.5rem;
   border: 1px solid #888;
   background: #888;
   color: #bbb;
 }
 
 .m-navigation--undo {
-  width: 100%;
-  height: 4.5rem;
   border: 1px solid #444;
   background: #444;
+  color: white;
 }
 
 .l-game-container {
@@ -212,7 +225,7 @@ body {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   border-radius: 3px;
   background: #ddd;
 }
@@ -221,7 +234,7 @@ body {
 
   .m-card {
     padding: 6px 0;
-    font-size: 1.7rem;
+    font-size: 1.95rem;
   }
 
 }
@@ -229,7 +242,15 @@ body {
 @media (min-width: 700px) {
 
   .m-card {
-    font-size: 2rem;
+    font-size: 2.3rem;
+  }
+
+}
+
+@media (min-width: 1000px) {
+
+  .m-card {
+    font-size: 18px;
   }
 
 }
@@ -312,6 +333,12 @@ body {
   float: left;
 }
 
+.m-pile--cards {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .m-pile--placeholder {
   margin: 2px 0;
   height: 25px;
@@ -371,4 +398,75 @@ body {
 
 .l-howto ol {
   padding-left: 20px;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  font-variant-emoji: text;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  body {
+    background: #1a1a1a;
+    color: #ddd;
+  }
+  
+  .m-column--placeholder {
+    border-color: #444;
+    background-color: #222;
+    color: #777;
+  }
+  
+  .m-card {
+    border-color: #555;
+    background: #333;
+  }
+  
+  .m-card.as-open {
+    border-color: #888;
+    background-color: #c4c4c4;
+  }
+  
+  .m-card.as-moving {
+    background-color: #d9cf5e;
+  }
+  
+  .m-card.as-closed {
+    filter: brightness(0.7);
+    background-color: #444;
+  }
+  
+  .m-card_small {
+    border-color: #888;
+    background: #c4c4c4;
+  }
+  
+  .l-piles-container {
+    background-color: #262626;
+  }
+  
+  .l-piles-container--note {
+    color: #999;
+  }
+  
+  .m-pile--placeholder {
+    border-color: #888;
+    background: #c4c4c4;
+  }
+  
+  .l-howto {
+    background: rgba(45, 45, 45, 0.95);
+    color: #ddd;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  }
+  
+  .l-howto:after {
+    background-color: #ddd;
+    color: #222;
+  }
+
 }
