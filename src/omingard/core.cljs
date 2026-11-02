@@ -76,7 +76,7 @@
             (dom/h1 #js {:className "m-navigation--title"}
               "Omingard"))
           (dom/li #js {:className "m-navigation--item"}
-            (dom/a #js {:href "https://github.com/paulwittmann/omingard" :target "_blank"} "Source Code"))
+            (dom/a #js {:href "https://github.com/mcdemarco/omingard" :target "_blank"} "Source Code"))
           (dom/li #js {:className "m-navigation--item"}
             (dom/button #js {:className "m-navigation--new-game"
                              :onClick (fn [_] (deal-new-game!))} "New Game"))
@@ -126,8 +126,8 @@
                 "Move cards:"(dom/br nil)
                 "Red goes below black (and vice versa). Descending values."(dom/br nil)
                 "A "(dom/span #js {:className "m-card_small red"} "♥\uFE0EQ")
-                " can go below a " (dom/span #js {:className "m-card_small black"} "♠K")
-                " or " (dom/span #js {:className "m-card_small black"} "♣K")
+                " can go below a " (dom/span #js {:className "m-card_small black"} "♠\uFE0EK")
+                " or " (dom/span #js {:className "m-card_small black"} "♣\uFE0EK")
                 "."(dom/br nil)
                 "First click on the queen, then on the king.")
               (dom/li nil

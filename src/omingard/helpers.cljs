@@ -32,11 +32,12 @@
 
 (defn symbol-for-suit [suit]
   "Takes a suit and returns its ASCII symbol, e.g. ♠ for :spades."
+  ;; U+FE0E forces text presentation; without it iOS draws the suits as emoji.
   (case suit
-    :spades "♠"
+    :spades "♠\uFE0E"
     :hearts "♥\uFE0E"
-    :diamonds "♦"
-    :clubs "♣"
+    :diamonds "♦\uFE0E"
+    :clubs "♣\uFE0E"
     nil))
 
 (defn open? [card]

@@ -174,7 +174,7 @@
   [:.m-card
      {:background "#ddd"
       :line-height (px 11)
-      :font-size (rem 2.1)
+      :font-size (rem 2.4)
       :margin "2px 0"
       :padding "5px 0"
       :text-align "center"
@@ -185,10 +185,14 @@
       :overflow "hidden"
      }
     (at-media {:max-width (px 500)}
-      [:& {:font-size (rem 1.7)
+      [:& {:font-size (rem 1.95)
            :padding "6px 0"}])
     (at-media {:min-width (px 700)}
-      [:& {:font-size (rem 2)}])
+      [:& {:font-size (rem 2.3)}])
+    ;; Cards stop widening at content-width but rem keeps growing, so cap it
+    ;; before the glyphs outgrow the fixed 25px card height.
+    (at-media {:min-width content-width}
+      [:& {:font-size (px 18)}])
        [:&.as-open
          {:background-color "#fafafa"
           :cursor "pointer"}]
@@ -306,4 +310,52 @@
       {:padding-left (px 20)}]
 
    ]
+
+  [:html {:color-scheme "light dark"}]
+
+  [:body {:font-variant-emoji "text"}]
+
+  (at-media {:prefers-color-scheme "dark"}
+    [:body
+      {:background "#1a1a1a"
+       :color "#ddd"}]
+
+    [:.m-column--placeholder
+      {:border-color "#444"
+       :background-color "#222"
+       :color "#777"}]
+
+    ;; Card faces stay light so black suits keep their contrast.
+    [:.m-card
+      {:background "#333"
+       :border-color "#555"}]
+    [:.m-card.as-open
+      {:background-color "#c4c4c4"
+       :border-color "#888"}]
+    [:.m-card.as-moving
+      {:background-color "#d9cf5e"}]
+    [:.m-card.as-closed
+      {:background-color "#444"
+       :filter "brightness(0.7)"}]
+
+    [:.m-card_small
+      {:background "#c4c4c4"
+       :border-color "#888"}]
+
+    [:.l-piles-container
+      {:background-color "#262626"}]
+    [:.l-piles-container--note
+      {:color "#999"}]
+
+    [:.m-pile--placeholder
+      {:background "#c4c4c4"
+       :border-color "#888"}]
+
+    [:.l-howto
+      {:background "rgba(45, 45, 45, 0.95)"
+       :color "#ddd"
+       :box-shadow "2px 2px 8px rgba(0, 0, 0, 0.8)"}]
+    [:.l-howto:after
+      {:color "#222"
+       :background-color "#ddd"}])
 )

@@ -73,10 +73,10 @@
 
   {:name "symbol-for-suit"
    :expectations [
-     ["spades"   (= "♠" (helpers/symbol-for-suit :spades))]
+     ["spades"   (= "♠\uFE0E" (helpers/symbol-for-suit :spades))]
      ["hearts"   (= "♥\uFE0E" (helpers/symbol-for-suit :hearts))]
-     ["diamonds" (= "♦" (helpers/symbol-for-suit :diamonds))]
-     ["clubs"    (= "♣" (helpers/symbol-for-suit :clubs))]
+     ["diamonds" (= "♦\uFE0E" (helpers/symbol-for-suit :diamonds))]
+     ["clubs"    (= "♣\uFE0E" (helpers/symbol-for-suit :clubs))]
      ["godzilla" (= nil (helpers/symbol-for-suit :godzilla))]]}
 
   {:name "open?"

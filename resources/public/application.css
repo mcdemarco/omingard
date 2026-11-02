@@ -225,7 +225,7 @@ body {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   border-radius: 3px;
   background: #ddd;
 }
@@ -234,7 +234,7 @@ body {
 
   .m-card {
     padding: 6px 0;
-    font-size: 1.7rem;
+    font-size: 1.95rem;
   }
 
 }
@@ -242,7 +242,15 @@ body {
 @media (min-width: 700px) {
 
   .m-card {
-    font-size: 2rem;
+    font-size: 2.3rem;
+  }
+
+}
+
+@media (min-width: 1000px) {
+
+  .m-card {
+    font-size: 18px;
   }
 
 }
@@ -384,4 +392,75 @@ body {
 
 .l-howto ol {
   padding-left: 20px;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  font-variant-emoji: text;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  body {
+    background: #1a1a1a;
+    color: #ddd;
+  }
+  
+  .m-column--placeholder {
+    border-color: #444;
+    background-color: #222;
+    color: #777;
+  }
+  
+  .m-card {
+    border-color: #555;
+    background: #333;
+  }
+  
+  .m-card.as-open {
+    border-color: #888;
+    background-color: #c4c4c4;
+  }
+  
+  .m-card.as-moving {
+    background-color: #d9cf5e;
+  }
+  
+  .m-card.as-closed {
+    filter: brightness(0.7);
+    background-color: #444;
+  }
+  
+  .m-card_small {
+    border-color: #888;
+    background: #c4c4c4;
+  }
+  
+  .l-piles-container {
+    background-color: #262626;
+  }
+  
+  .l-piles-container--note {
+    color: #999;
+  }
+  
+  .m-pile--placeholder {
+    border-color: #888;
+    background: #c4c4c4;
+  }
+  
+  .l-howto {
+    background: rgba(45, 45, 45, 0.95);
+    color: #ddd;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  }
+  
+  .l-howto:after {
+    background-color: #ddd;
+    color: #222;
+  }
+
 }
