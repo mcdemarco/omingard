@@ -72,10 +72,16 @@
   [:.l-navigation-container {
     :width "100%"
     :padding "0 1rem"
-    :background "black"
-    :height "4.5rem"}]
+    :background "black"}]
 
+  ;; Flex + nowrap so the buttons can never wrap down over the cards,
+  ;; and a 44px floor because rem-based heights get too small to tap on phones.
   [:.m-navigation {
+    :display "flex"
+    :flex-wrap "nowrap"
+    :align-items "stretch"
+    :min-height (px 44)
+    :height (rem 4.5)
     :list-style "none"
     :padding "0"
     :color "#eee"
@@ -84,14 +90,16 @@
       [:& {:width content-width}])]
 
   [:.m-navigation--item
-    {:height (rem 4.5)
-     :float "left"
-     :margin-right "1%"
-     :line-height (rem 4.5)
-     :width (rem 10)}
+    {:display "flex"
+     :align-items "center"
+     :flex "0 0 auto"
+     :margin-left (rem 1)
+     :white-space "nowrap"}
 
-    [:&.as-right
-      {:float "right"}]
+    [:&.as-title
+      {:flex "1 1 auto"
+       :margin-left 0
+       :overflow "hidden"}]
     [:a
       {:color "white"
        :text-decoration "none"}]
@@ -101,17 +109,23 @@
     :font-size "2rem"
     :margin "0"}]
 
+  [:.m-navigation--new-game :.m-navigation--undo {
+    :align-self "stretch"
+    :min-width (rem 10)
+    :padding "0 1rem"
+    :white-space "nowrap"
+    :touch-action "manipulation"
+    :cursor "pointer"}]
+
   [:.m-navigation--new-game {
     :color "#bbb"
     :background "#888"
-    :border "1px solid #888"
-    :height (rem 4.5)}]
+    :border "1px solid #888"}]
 
   [:.m-navigation--undo {
+    :color "white"
     :background "#444"
-    :border "1px solid #444"
-    :height (rem 4.5)
-    :width "100%"}]
+    :border "1px solid #444"}]
 
   [:.l-game-container
     {:width "100%"

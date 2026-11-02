@@ -71,19 +71,19 @@
     om/IRender
     (render [this]
       (dom/div #js {:className "l-navigation-container"}
-        (dom/ul #js {:className "m-navigation cf"}
-          (dom/li #js {:className "m-navigation--item"}
+        (dom/ul #js {:className "m-navigation"}
+          (dom/li #js {:className "m-navigation--item as-title"}
             (dom/h1 #js {:className "m-navigation--title"}
               "Omingard"))
-          (dom/li #js {:className "m-navigation--item as-right"}
-            (dom/button #js {:className "m-navigation--undo"
-                             :onClick (fn [_] (om/transact! appl helpers/undo))}
-                        "↩ Undo"))
-          (dom/li #js {:className "m-navigation--item as-right"}
+          (dom/li #js {:className "m-navigation--item"}
+            (dom/a #js {:href "https://github.com/paulwittmann/omingard" :target "_blank"} "Source Code"))
+          (dom/li #js {:className "m-navigation--item"}
             (dom/button #js {:className "m-navigation--new-game"
                              :onClick (fn [_] (deal-new-game!))} "New Game"))
-          (dom/li #js {:className "m-navigation--item as-right"}
-            (dom/a #js {:href "https://github.com/paulwittmann/omingard" :target "_blank"} "Source Code")))))))
+          (dom/li #js {:className "m-navigation--item"}
+            (dom/button #js {:className "m-navigation--undo"
+                             :onClick (fn [_] (om/transact! appl helpers/undo))}
+                        "↩ Undo")))))))
 
 (defn hide-howto-popup [e]
   (.remove (.-classList (.-currentTarget e)) "is-visible"))
