@@ -241,17 +241,46 @@
       :color "#fff"
       :border "1px solid #234892"
       :width "100%"
-      :height (px 25)
-      :line-height (rem 1.4)
+      ;; On phones the label wraps to two lines, which don't fit in 25px with
+      ;; Safari's button text metrics, so the button grows instead of clipping.
+      :min-height (px 25)
+      :padding "2px 1px"
+      :line-height 1.1
       :border-radius (px 3)
       :margin "2px 0"
-      }]
+      :position "relative"
+      }
+    [:&:disabled
+      {:background-color "#999"
+       :border-color "#999"
+       :cursor "default"}]]
+
+  [:.l-piles-container--rounds-left
+    {:position "absolute"
+     :top (px -9)
+     :right (px -9)
+     :min-width (px 16)
+     :height (px 16)
+     :padding "0 3px"
+     :box-sizing "border-box"
+     :border-radius (px 8)
+     :background-color "#fff"
+     :color "#234892"
+     :border "1px solid #234892"
+     :font-size (px 11)
+     :font-weight "bold"
+     :line-height (px 14)
+     :text-align "center"}]
 
   [:.m-piles
     {:padding (px 0)
      :list-style-type "none"
      :float "left"
      :width "100%"
+     ;; The Next round button can be taller than the piles on phones; it
+     ;; should stand on the same baseline as the piles rather than hang below.
+     :display "flex"
+     :align-items "flex-end"
      :margin-top half-padding
      :margin-bottom half-padding}]
 
@@ -351,6 +380,10 @@
       {:background-color "#262626"}]
     [:.l-piles-container--note
       {:color "#999"}]
+    [:.l-piles-container--new-round:disabled
+      {:background-color "#555"
+       :border-color "#555"
+       :color "#999"}]
 
     [:.m-pile--placeholder
       {:background "#c4c4c4"

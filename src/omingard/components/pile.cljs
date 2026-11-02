@@ -4,6 +4,7 @@
             [om.dom :as dom :include-macros true]
             [cljs.core.async :refer [put! chan <!]]
             [omingard.helpers :as helpers]
+            [omingard.setup :as setup]
             [omingard.components.card :as card-components]))
 
 (defn item [pile owner]
@@ -34,8 +35,15 @@
         (dom/div #js {:className "cf"}
           (apply dom/ul #js {:className "m-piles cf"}
             (conj (vec (om/build-all item piles {:init-state {:channel channel}}))
-                  (dom/li #js {:className "m-pile"
-                               :onClick (fn [e] (.preventDefault e)
-                                          (put! channel [helpers/serve-new-cards]))}
-                    (dom/button #js {:className "l-piles-container--new-round"} "Next round")))
+                  (let [cards-left (count stack)
+                        rounds-left (js/Math.ceil (/ cards-left setup/columns#))]
+                    (dom/li #js {:className "m-pile"
+                                 :onClick (fn [e] (.preventDefault e)
+                                            (put! channel [helpers/serve-new-cards]))}
+                      (dom/button #js {:className "l-piles-container--new-round"
+                                       :disabled (zero? cards-left)
+                                       :title (str cards-left " cards left")}
+                        "Next round"
+                        (when (pos? rounds-left)
+                          (dom/span #js {:className "l-piles-container--rounds-left"} rounds-left))))))
           ))))))

@@ -13,7 +13,7 @@ goog.addDependency("../cljs/core/async/impl/timers.js", ['cljs.core.async.impl.t
 goog.addDependency("../cljs/core/async.js", ['cljs.core.async'], ['cljs.core.async.impl.channels', 'cljs.core.async.impl.dispatch', 'cljs.core', 'cljs.core.async.impl.buffers', 'cljs.core.async.impl.protocols', 'cljs.core.async.impl.ioc_helpers', 'cljs.core.async.impl.timers']);
 goog.addDependency("../om/core.js", ['om.core'], ['cljs.core', 'om.dom', 'goog.ui.IdGenerator']);
 goog.addDependency("../omingard/components/card.js", ['omingard.components.card'], ['omingard.helpers', 'cljs.core', 'om.dom', 'cljs.core.async', 'om.core']);
-goog.addDependency("../omingard/components/pile.js", ['omingard.components.pile'], ['omingard.helpers', 'cljs.core', 'om.dom', 'cljs.core.async', 'omingard.components.card', 'om.core']);
+goog.addDependency("../omingard/components/pile.js", ['omingard.components.pile'], ['omingard.helpers', 'cljs.core', 'om.dom', 'cljs.core.async', 'omingard.components.card', 'om.core', 'omingard.setup']);
 goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
 goog.addDependency("../clojure/set.js", ['clojure.set'], ['cljs.core']);
 goog.addDependency("../clojure/data.js", ['clojure.data'], ['cljs.core', 'clojure.set']);
